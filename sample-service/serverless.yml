@@ -20,6 +20,9 @@ service: sample-service # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs8.10
+  deploymentBucket:
+    name: deploy-bucket-vinicius
+    serverSideEncryption: AES256
 
 # you can overwrite defaults here
 #  stage: dev

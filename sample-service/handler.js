@@ -3,7 +3,7 @@
 const util = require("shared/util.js");
 
 module.exports.hello = async (event) => {
-  util.sayHello();
+  util.sayHello(); 
   return {
     statusCode: 200,
     body: JSON.stringify({

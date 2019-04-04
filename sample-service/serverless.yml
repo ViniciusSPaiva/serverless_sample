@@ -19,9 +19,11 @@ service: sample-service # NOTE: update this with your service name
 
 provider:
   name: aws
+  region: sa-east-1
   runtime: nodejs8.10
+  stage: dev
   deploymentBucket:
-    name: deploy-bucket-vinicius
+    name: deploys-vinicius
     serverSideEncryption: AES256
 
 # you can overwrite defaults here
@@ -29,11 +31,11 @@ provider:
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource: "*"
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
@@ -57,9 +59,15 @@ package:
 #    - exclude-me.js
 #    - exclude-me-dir/**
 
+custom:
+  functionName:
+    dev: "HelloWorldDev"
+    prod: "HelloWorld"
+
 functions:
-  hello:
+  HelloWorld:
     handler: handler.hello
+    name: ${self:custom.functionName.${opt:stage, self:provider.stage}}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

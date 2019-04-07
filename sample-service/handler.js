@@ -3,11 +3,11 @@
 const util = require("shared/util.js");
 
 module.exports.hello = async (event) => {
-  util.sayHello(); 
+  util.sayHello();
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!!!!',
+      message: 'Go Serverless v1.0! Your function executed successfully!',
       input: event,
     }),
   };

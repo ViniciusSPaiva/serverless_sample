@@ -1,0 +1,7 @@
+#shared/util.yml
+#functionName:
+#  dev: ${self:custom.baseName}Dev
+#  prod: ${self:custom.baseName}
+functionSufix:
+  dev: "Dev"
+  prod: ""

@@ -1,0 +1,22 @@
+<project name="SampleService" basedir="." default="dev">
+
+	<target name="dev">
+    <echo>Efetuando deploy em desenv...</echo>
+		<antcall target="deploy">
+			<param name="stage" value="dev"/>
+		</antcall>
+	</target>
+
+  <target name="prod">
+    <echo>Efetuando deploy em producao...</echo>
+		<antcall target="deploy">
+			<param name="stage" value="prod"/>
+		</antcall>
+	</target>
+
+  <target name="deploy">
+			<exec executable="cmd">
+				<arg value="/c serverless deploy --stage ${stage}"/>				
+			</exec>
+	</target>
+</project>
